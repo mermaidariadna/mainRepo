@@ -1,18 +1,32 @@
 #include "sort.h"
 
+//аналогичная ситуация нет файла sort.h....
+
+
+
 void bubleSort(int arr[], int size){
-	int i, j;
+	int i, j; //зачем здесь эти переменны???, если ты ими не будешь пользоваться после выполнения цикла....
+			//конечно это не ошибка и они будут уничтожены после выполнения ф-ции, но так лучше не делать
+	for(int i = 0; i .....
+		for (int j = 0; j ....
+
+
 	for (i = 0; i < size - 1; i++){
         	for (j = 0; j < size - i - 1; j++){
-            		if (arr[j] > arr[j + 1]) swap(arr[j], arr[j + 1]);		
+//конечно никто не запрещеает писать операторы в одну строчку.... но такой код плохо читается....
+            		if (arr[j] > arr[j + 1]) {
+				swap(arr[j], arr[j + 1]);
+			}
 		}
 	}
 }
 void selectionSort(int arr[], int size){
 	int pos_min,temp;
-        for (int i = 0; i < size - 1; i++){
+        for (int i = 0; i < size - 1; i++){//а здесь ты переменные не вынесла за пределы цикла... всегда приветсвуется единый стиль.....
         	pos_min = i;        
-        	for (int j = i + 1; j < size; j++){
+//нижние строчки уже трудновато читать... всё сливается.... такой код больше смотреть не буду...
+
+        	for (int j = i + 1; j < size; j++){	//для этого у тебя есть целая функция arrayMin(....) в файле array.c зачем это ещё раз писать????.... в общем надо воспользоваться той функцией, которую написала ранее
                 	if (arr[j] < arr[pos_min]) pos_min=j;
             		if (pos_min != i) swap(arr[i], arr[pos_min]);	}
 	}
@@ -20,6 +34,7 @@ void selectionSort(int arr[], int size){
 
 void countSort(int arr[], int size){
 	//something
+	//да да?????
 }
 
 void insertionSort(int arr[], int size){
@@ -27,10 +42,10 @@ void insertionSort(int arr[], int size){
 	for(int i = 1; i < size; i++){
 		key = arr[i];
 		j = i - i;
-		while( arr[j] > key && j >= 0){
+		while( arr[j] > key && j >= 0/*касательно равенства j>= 0 ... давай рассуждать, если j > 0 цикл выполняем... как только j = 0 цикл больше не имеет смысла выполнять... */){
 			arr[j + 1] = arr[j];
-			j = j - 1;
+			j = j - 1;	// --j.... //вот здесь j = -1, из-за того, что j>=0 в условии
 		}
-		arr[j + 1] = key;
+		arr[j + 1] = key;	//поэтому здесь надо писать j+1
 	}
 }
